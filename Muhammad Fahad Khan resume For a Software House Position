@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .resume_container {
+            max-width: 100%;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.4);
+            border-radius: 14px;
+            overflow: hidden;
+            animation: fadeIn 0.8s ease-in;
+        }
+        @keyframes fadeIn {
+            from{opacity: 0; transform: translateY(30px);}
+            to {opacity: 1; transform: translatey(0);}
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 50px 50px;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before{
+               content: '';
+               position: absolute; 
+               top: -50%;
+               right: -10%;
+               width: 400px;
+               height: 400px;
+               background: rgba(255,255,255,0.1);
+               border-radius: 50%;
+        }
+        .header::after{
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
+        }
+        .name {
+            font-size: 70px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .tagline {
+            font-size: 30px;
+            font-weight: 300;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 14px;
+            font-size: 14px;
+            position: relative;
+            z-index: 1;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.1);
+            padding: 12px 18px;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        .contact-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateX(5px);
+        }
+        .contact-item svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+        .content{
+            padding:  50px;
+        }
+        .section {
+            margin-bottom: 40px;
+            animation: slideIn 0.8s ease-out;
+        }
+        @keyframes slideIn {
+            from {opacity: 0; transform: translateX(-20px);}
+            to {opacity: 1; transform: translateX(0);}
+        }
+        .section-title {
+            font-size: 30px;
+            font-weight: 700px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+             -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+            padding-bottom: 12px;
+            border-bottom: 4px solid #667eea;
+            display: inline-block;
+            position: relative;
+        }
+        .section-title::after{
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            right: -20px;
+            width: 20px;
+            height: 4px;
+            background: #f5576c
+        }
+        .summary-box {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 30px;
+            border-radius: 12px;
+            color: #333;
+            font-size: 30px;
+            line-height: 1.8;
+            text-align: justify;
+            border-left: 5px solid #667eea;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .skill-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f5f7fa 100%);
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 8px solid #667eea;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #667eea20 0%, #764ba220 100%);
+            border-radius: 0 0 0 100%;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow:  0 12px 30px rgba(102,126,234,0.3);
+        }
+        .skill-card h3 {
+            color: #667eea;
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .skill-card p {
+            color: #555;
+            font-size: 20px;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+        .experience-item {
+            margin-bottom: 40px;
+            padding-left: 30px;
+            border-left: 3px solid #e0e0e0;
+            position: relative;
+            transition: all 0.7s ease;
+        }
+        .experience-item:hover {
+            border-left: color(red);
+        }
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -9px;
+            top: 8px;
+            width: 20px;
+            background: #667eea;
+            border-radius: 70%;
+            box-shadow: 0 0 0 4px white, 0 0 0 7px #667eea;
+            transition: all 0.3s ease;
+        }
+        .experience-item:hover::before {
+            background: #f5576c;
+            box-shadow: 0 0 0 4px white, 0 0 0 7px #f5576c;
+        }
+        .job-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 7px;
+        }
+        .company {
+            font-size: 20px;
+            color: #667eea;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .duration{
+            display: inline-block;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            color: #c92a2a;
+            padding: 4px 10px;
+            border-radius: 17px;
+            font-size: 27px;
+            font-weight: 1000;
+            margin-bottom: 10px;
+        }
+        .location {
+            font-size: 27px;
+            color: #999;
+            margin-bottom: 17px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .job-description{
+            color: #555;
+            font-size: 20px;
+            line-height: 1.9;
+        }
+        .job-description ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .job-description li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 10px;
+        }
+        .job-description li::before{
+            content: '';
+            position: absolute;
+            left: 10px;
+            color: #667eea;
+            font-weight: bold;
+        }
+        .education-item {
+            background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
+            padding: 30px;
+            border-radius: 17px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        .education-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 25px rgba(102,126,234,0.2);
+        }
+        .degree {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .Institution {
+            font-size: 20px;
+            color: #667eea;
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        .edu-duration {
+            font-size: 17px;
+            color: #777;
+            font-style: bold;
+            font-weight: 700;
+        }
+        .highlight-banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius:15px;
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(102,126,234,0.3);
+            margin-top: 30px;
+        }
+        .highlight-banner h3 {
+            font-size: 30px;
+            margin-bottom: 17px;
+            font-weight: 700 ;
+        }
+        .highlight-banner p {
+            font-size: 20px;
+            line-height: 1.8;
+            font-style: oblique;
+            padding: 25px;
+            font-size: 20px;
+        }
+        .footer {
+            background:  #2d3748;
+            color: whitesmoke;
+            text-align: center;
+            padding: 25px;
+            font-size: 15px;
+        }
+         @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .resume-container {
+                box-shadow: none;
+                max-width: 100%;
+            }
+            
+            .experience-item:hover,
+            .skill-card:hover,
+            .education-item:hover {
+                transform: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header, .content {
+                padding: 40px 30px;
+            }
+            
+            .name {
+                font-size: 38px;
+            }
+            
+            .tagline {
+                font-size: 18px;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Fahad khan docs : </title>
+</head>
+<body>
+    <div class="resume_container">
+        <div class="header">
+            <h1 class="name">MUHAMMAD FAHAD KHAN</h1>
+            <p class="tagline">FRONT END DEVELOPER.UI/UX ENTHUSIAST . RESPONSIVE LAYOUTS </p>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+                   muhammadfahaddeveloper@gmail.com 
+                </div>
+                <div class="contact-item">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+                    Karachi, Pakistan
+                </div>
+                <div class="contact-item">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84"/></svg>
+                  www.linkedin.com/in/muhammad-fahad-developer-a8085138b
+                </div>
+                <div class="contact-item">
+                    <svg fill="cu.rrentColor" viewBox="0 0 20 20"><path d="M10 0C4.477 0 0 4.477 0 10c0 4.237 2.636 7.855 6.356 9.312-.088-.791-.167-2.005.035-2.868.181-.78 1.172-4.97 1.172-4.97s-.299-.6-.299-1.486c0-1.39.806-2.428 1.81-2.428.852 0 1.264.64 1.264 1.408 0 .858-.545 2.14-.828 3.33-.236.995.5 1.807 1.48 1.807 1.778 0 3.144-1.874 3.144-4.58 0-2.393-1.72-4.068-4.176-4.068-2.845 0-4.515 2.135-4.515 4.34 0 .859.331 1.781.745 2.281a.3.3 0 01.069.288l-.278 1.133c-.044.183-.145.223-.335.134-1.249-.581-2.03-2.407-2.03-3.874 0-3.154 2.292-6.052 6.608-6.052 3.469 0 6.165 2.473 6.165 5.776 0 3.447-2.173 6.22-5.19 6.22-1.013 0-1.965-.525-2.291-1.148l-.623 2.378c-.226.869-.835 1.958-1.244 2.621.937.29 1.931.446 2.962.446 5.523 0 10-4.477 10-10S15.523 0 10 0z"/></svg>
+                https://github.com/fahad925-commits
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="content">
+    <div class="section">
+        <h2 class="section-title">Professional Summary</h2>
+        <div class="summary-box">
+            Dynamic and passionate Web & App Developer with a strong foundation in modern frontend technologies and growing expertise in full-stack development. Currently advancing technical skills through Saylani Mass IT Training Program and Cisco Networking Academy. Proven ability to transform creative ideas into responsive, user-friendly web applications using cutting-edge technologies like React.js, Next.js, and Vue.js. Demonstrated success as a freelance developer on Fiverr while simultaneously excelling as an English Language Instructor for 3+ years. Committed to writing clean, scalable code and delivering exceptional user experiences. Seeking opportunities to contribute innovative solutions to impactful digital products.
+                </div>
+        </div>
+        <div class="section">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>🎨 Frontend development</h3>
+                <p><strong>Languages & Framework:</strong>HTML5, CSS3, JavaScript (ES6+), TypeScript  <br>
+                <strong>Libraries:</strong>React.js, Next.js, Vue.js <br>
+                <strong>Design</strong>Responsive Design, Component-Based Architecture, UI/UX Principles</p>
+            </div>
+            <div class="skill-card">
+                <h3>🛠️ Tools & Technologies</h3>
+                <p><strong>Version Control :</strong>Git, GitHub <br>
+                <strong>development:</strong>Clean Code Practices, Performance Optimization <br>
+                <strong>Specialization</strong>E-Commerce Development, API Integration</p>    
+            </div>
+            <div class="skill-card">
+                <h3>💡 Core Competencies</h3>
+                <p><strong>Technical:</strong>Problem-Solving, Algorithm Design, Cross-Browser Compatibility <br>
+                <strong>Professional:</strong>Agile Development, Client Communication, Project Management </p>
+            </div>
+            <div class="skill-card">
+                <h3>🚀 Currently Exploring</h3>
+                <p><strong>Backend :</strong>Node.js, Express.js, RESTful APIs <br>
+                <strong>Database:</strong>MongoDB, SQL <br>
+                <strong>Cloud : </strong>AWS, Cloud Deployment  </p>  
+            </div>
+        </div>
+        </div>
+        <div class="section">
+            <h2 class="section-title">Professional experience</h2>
+            <div class="experience-item">
+                <h3 class="job-title">Web & App Developer (freelance)</h3>
+                <p class="company">Fiverr</p>
+                <span class="duration">November 2025 - Present</span>
+                <p class="location">📍 Remote, Pakistan</p>
+                <div class="job-description">
+                    <ul>
+                        <li>Building custom web applications and responsive websites for international clients across diverse industries</li>
+                        <li>Delivering high-quality frontend solutions using React.js, Next.js, and Vue.js with focus on performance optimization</li>
+                        <li>Implementing modern UI/UX designs that enhance user engagement and drive conversion rates</li>
+                        <li>Maintaining 100% client satisfaction through clear communication, technical expertise, and timely project delivery</li>
+                        <li>Developing e-commerce platforms with seamless user experiences and secure payment integrations</li>
+                        <li>Collaborating with clients to understand business requirements and provide scalable technical solutions</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="experience-item">
+                <h3 class="job-title">Modern Web & App Development Student</h3>    
+                <span class="duration">On going</span>
+                <p class="company">Saylani Mass IT Training (SMIT)</p>
+                <h3 class="job-title">Web & App Development Student</h3>    
+                <p class="company">Aptech Pakistan Learning Institue</p>
+                <span class="duration">Completed</span>
+                <p class="location">📍 Karachi, Sindh, Pakistan</p>
+                <div class="job-description">
+                    <ul>
+                        <li>Pursuing comprehensive training in modern web and app development technologies and frameworks</li>
+                        <li>Gaining hands-on experience building responsive websites and mobile applications using industry-standard tools</li>
+                        <li>Working on real-world projects that strengthen problem-solving abilities and coding proficiency</li>
+                        <li>Mastering JavaScript frameworks including React.js, Next.js, and Vue.js through practical implementation</li>
+                        <li>Developing strong understanding of component-based architecture and state management patterns</li>
+                        <li>Collaborating with peers on team projects to simulate professional development environments</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <h2 class="section-title">Education</h2>
+            <div class="education-item">
+                <h3 class="degree">Web and App Development</h3>
+                <p class="Institution">Saylani Mass IT Training (SMIT)</p>
+                <p class="edu-duration"> October 2025 - August 2026</p>
+                <p style="color: #666; font-size: 14px; margin-top: 8px; font-weight: 700;">Focus: Web & App Development, Digital/Multimedia and Information Resources Design</p>
+            </div>
+            <div class="education-item">
+                <h3 class="degree"> Web and App Development Certification</h3>
+                <p class="Institution">Cisco Networking Academy</p>
+                <p class="edu-duration">November 2025 - December 2025</p>
+                <p style="color: #666; font-size: 14px; margin-top: 8px; font-weight: 700;">Focus: Web Page Design, Digital/Multimedia and Information Resources Design</p>
+            </div>
+            <div class="education-item">
+                <h3 class="degree">Pre Engineering Intermediate</h3>
+                <p class="Institution">Govt Islamia Science Govt College </p>
+                <p class="edu-duration">July 2015 - July 2017</p>
+                <p style="color: #666; font-size: 14px; margin-top: 8px; font-weight: 700; ">Major: Pre Engineering</p>
+            </div>
+            <div class="education-item">
+                <h3 class="degree">Matriculation</h3>
+                <p class="Institution">Prince Garden School</p>
+                <p class="edu-duration">Completed April 2015</p>
+                <p style="color: #666; font-size: 14px; margin-top: 8px; font-weight: 700;">Major: Pre Engineering</p>
+            </div>
+        </div>
+        <div class="highlight-banner">
+            <h3>💫 What Drives Me</h3>
+            <p>"Learning never stops — every line of code brings me closer to my goal of creating impactful digital products. I'm passionate about transforming creative ideas into interactive, user-friendly experiences while continuously pushing the boundaries of modern web development."</p>
+        </div>
+    </div>
+    <div class="footer">
+        <p>References available upon request • Open to full-time opportunities and exciting projects.</p>
+    </div>
+</div>
+</body>
+</html>
